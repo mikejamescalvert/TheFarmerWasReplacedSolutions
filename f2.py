@@ -1,33 +1,30 @@
 import f1
 
-"""
-f2 - routines and experiments for TFWR save.
-
-Provides a deterministic grid sweep routine that mixes in companion planting
-when available. Defaults to running forever (the game script loop will also
-control execution). Prints only when `debug=True`.
-
-Public API:
-- grid_sweep_with_companion_mix(companion_interval=5, debug=False, passes=None)
-    companion_interval: every N tiles (based on x+y) attempt companion planting
-    debug: if True, prints minimal runtime info
-    passes: if None, runs forever; if an int, does that many full grid passes
-
-Example usage:
-    grid_sweep_with_companion_mix(companion_interval=4, debug=False, passes=None)
-
-This routine uses helpers from `f1.py`: `resetPosition`, `moveToPosition`,
-`handleSpotHarvestingProcess`, `getEntityForSpot`, and `plantCompanionAndReturn`.
-"""
+# f2 - routines and experiments for TFWR save.
+#
+# Provides a deterministic grid sweep routine that mixes in companion planting
+# when available. Defaults to running forever (the game script loop will also
+# control execution). Prints only when debug=True.
+#
+# Public API:
+# - grid_sweep_with_companion_mix(companion_interval=5, debug=False, passes=None)
+#     companion_interval: every N tiles (based on x+y) attempt companion planting
+#     debug: if True, prints minimal runtime info
+#     passes: if None, runs forever; if an int, does that many full grid passes
+#
+# Example usage:
+#     grid_sweep_with_companion_mix(companion_interval=4, debug=False, passes=None)
+#
+# This routine uses helpers from f1.py: resetPosition, moveToPosition,
+# handleSpotHarvestingProcess, getEntityForSpot, and plantCompanionAndReturn.
 
 
 def grid_sweep_with_companion_mix(companion_interval=5, debug=False, passes=None):
-    """Deterministic serpentine grid sweep with occasional companion planting.
-
-    - companion_interval: integer; attempt companion planting when (x+y) % companion_interval == 0
-    - debug: print minimal actions when True
-    - passes: None (run forever) or integer number of full grid passes
-    """
+    # Deterministic serpentine grid sweep with occasional companion planting.
+    #
+    # - companion_interval: integer; attempt companion planting when (x+y) % companion_interval == 0
+    # - debug: print minimal actions when True
+    # - passes: if None, runs forever; if an integer, does that many full grid passes
 
     # Start from the canonical origin
     f1.resetPosition()
@@ -88,7 +85,7 @@ def grid_sweep_with_companion_mix(companion_interval=5, debug=False, passes=None
 
 
 def self_test():
-    """Run a single-pass test with debug output to validate behavior."""
+    # Run a single-pass test with debug output to validate behavior
     grid_sweep_with_companion_mix(companion_interval=4, debug=True, passes=1)
     print("self_test: position", get_pos_x(), get_pos_y())
 
